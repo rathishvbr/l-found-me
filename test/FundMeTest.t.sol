@@ -8,10 +8,17 @@ contract FundMeTest is Test {
     FundMe fundMe;
 
     function setUp() external {
-        fundMe = new FundMe();
+        // Should send correct args
+        fundMe = new FundMe(address(this));
     }
 
     function testMiniumDollarIsFive() public view {
         assertEq(fundMe.MINIMUM_USD(), 5e18);
+    }
+
+    function testOwnerIsMsgSender() public view {
+        console.log("Owner address:", fundMe.getOwner());
+        console.log("Sender address:", address(this));
+        assertEq(fundMe.getOwner(), address(this));
     }
 }
