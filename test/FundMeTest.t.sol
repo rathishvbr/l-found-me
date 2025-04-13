@@ -22,6 +22,7 @@ contract FundMeTest is Test {
     }
 
     function testPriceFeedVersionIsAccurate() public view {
+        // This will fail on mainnet, because on mainnet the version is 6
         assertEq(fundMe.getVersion(), 4);
     }
 }
